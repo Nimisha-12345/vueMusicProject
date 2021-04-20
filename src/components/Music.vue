@@ -47,6 +47,7 @@ export default {
                     title:'often',
                     artist:'post man',
                     src: require('../assets/nimi-3.mp3'),
+                    //image: require('../assets/nimi-3.jpg')
         
                     
                     
