@@ -2,31 +2,29 @@
     <div class="container" >
         <section class="player">
             <h2 class="song_title">{{current.title}}</h2>
-                <span>{{current.artist}}</span>
-            
-            <div class="system">
-                <button class="prev" @click="prev">Prev</button>
-                <button class="play" v-if="!Playing" @click="play">Play</button>
-                <button class="pause" v-else @click="pause">Pause</button>
-                <button class="next" @click="next">Next</button>
-            </div>                 
+                <p>{{current.artist}}</p>
+            <PlayTitle :play="play" :pause="pause" :next="next" :prev="prev" :Playing="Playing" />
+                   
         </section>
-        <section class="playlist">
-            <h3>Playlist</h3>
-            <button v-for="song in songs" :key="song.src" @click="play(song)" :class="(song.src == current.src) ? 'song playing' : 'song'">
-                {{song.title}} -  {{song.artist}}
-            </button>
-        </section>
+        <PlayTrack :songs="songs" :current="current" :play="play" /> 
+        
     </div>
 </template>
 
 <script>
+import PlayTitle from '../components/PlayTitle'
+import PlayTrack from  '../components/PlayTrack'
 export default {
+    name:'Music',
+    components:{
+        PlayTitle,
+        PlayTrack,
+    },
     data() {
         return {
             current: {},
             index: 0,
-            Playing:false,
+            Playing: false,
             
             songs:[
                 {
